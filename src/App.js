@@ -16,24 +16,24 @@ function App() {
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to='/'>Home</Link>
               </li>
               <li>
-                <Link to="/super-heroes">Traditional Super Heroes</Link>
+                <Link to='/super-heroes'>Traditional Super Heroes</Link>
               </li>
               <li>
-                <Link to="/rq-super-heroes">RQ Super Heroes</Link>
+                <Link to='/rq-super-heroes'>React Query Super Heroes</Link>
               </li>
             </ul>
           </nav>
           <Switch>
-            <Route path="/super-heroes">
+            <Route path='/super-heroes'>
               <SuperHeroesPage />
             </Route>
-            <Route path="/rq-super-heroes">
+            <Route path='/rq-super-heroes'>
               <RQSuperHeroesPage />
             </Route>
-            <Route path="/">
+            <Route path='/'>
               <HomePage />
             </Route>
           </Switch>

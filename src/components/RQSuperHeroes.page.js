@@ -6,9 +6,18 @@ export const RQSuperHeroesPage = () => {
     return axios.get("http://localhost:4000/superheroes");
   };
 
-  const { isLoading, data, isError, error } = useQuery(
+  const { isLoading, data, isError, error, refetch } = useQuery(
     "super-heroes",
-    fetchSuperHeroes
+    fetchSuperHeroes,
+    {
+      // Keep data fresh in 5 seconds
+      staleTime: 5000,
+
+      // refetch data every 2 seconds (polling)
+      // refetchInterval: 2000,
+
+      enabled: false,
+    }
   );
 
   if (isLoading) {
@@ -22,6 +31,7 @@ export const RQSuperHeroesPage = () => {
   return (
     <div>
       <h2>RQ Super Heroes Page</h2>
+      <button onClick={refetch}>Fetch heroes</button>
       {data?.data.map((hero) => {
         return <div key={hero.id}>{hero.name}</div>;
       })}

@@ -1,5 +1,4 @@
-import { useQuery } from "react-query";
-import axios from "axios";
+import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data) => {
@@ -10,35 +9,9 @@ export const RQSuperHeroesPage = () => {
     console.log("Perform side effect after encountering error", error);
   };
 
-  const fetchSuperHeroes = () => {
-    return axios.get("http://localhost:4000/superheroes");
-  };
-
-  const { isLoading, data, isError, error, refetch } = useQuery(
-    "super-heroes",
-    fetchSuperHeroes,
-    {
-      // Keep data fresh in 5 seconds
-      staleTime: 5000,
-
-      // refetch data every 2 seconds (polling)
-      // refetchInterval: 2000,
-
-      // Disable fetch data
-      // enabled: false,
-
-      // On success callback
-      onSuccess,
-
-      // On error callback
-      onError,
-
-      // Transforming data
-      select: (data) => {
-        const superHeroesNames = data.data.map((hero) => hero.name);
-        return superHeroesNames;
-      },
-    }
+  const { isLoading, data, isError, error, refetch } = useSuperHeroesData(
+    onSuccess,
+    onError
   );
 
   if (isLoading) {

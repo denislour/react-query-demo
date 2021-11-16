@@ -24,13 +24,20 @@ export const RQSuperHeroesPage = () => {
       // refetch data every 2 seconds (polling)
       // refetchInterval: 2000,
 
-      enabled: false,
+      // Disable fetch data
+      // enabled: false,
 
       // On success callback
       onSuccess,
 
       // On error callback
       onError,
+
+      // Transforming data
+      select: (data) => {
+        const superHeroesNames = data.data.map((hero) => hero.name);
+        return superHeroesNames;
+      },
     }
   );
 
@@ -46,8 +53,8 @@ export const RQSuperHeroesPage = () => {
     <div>
       <h2>RQ Super Heroes Page</h2>
       <button onClick={refetch}>Fetch heroes</button>
-      {data?.data.map((hero) => {
-        return <div key={hero.id}>{hero.name}</div>;
+      {data.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>;
       })}
     </div>
   );

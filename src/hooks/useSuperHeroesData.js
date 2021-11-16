@@ -23,9 +23,9 @@ export const useSuperHeroesData = (onSuccess, onError) => {
     onError,
 
     // Transforming data
-    select: (data) => {
-      const superHeroesNames = data.data.map((hero) => hero.name);
-      return superHeroesNames;
-    },
+    // select: (data) => {
+    //   const superHeroesNames = data.data.map((hero) => hero.name);
+    //   return superHeroesNames;
+    // },
   });
 };
